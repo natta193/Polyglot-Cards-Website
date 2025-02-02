@@ -83,22 +83,25 @@ nav ul li a:hover {
   font-size: 5rem;
   margin: 0;
   opacity: 0;
-  transform: translateY(-50px);
-  transition: opacity 1s ease, transform 1s ease;
+  transform: translateY(100px);
+  transition: opacity 3s ease, transform 2.5s ease;
 }
 
 /* Our Aim Section */
 .aim {
+  font-size: 2rem;
   background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
 }
 
 /* Products Section */
 .products {
+  font-size: 2rem;
   background: linear-gradient(135deg, #e6e6fa, #f0f8ff);
 }
 
 /* Join the Journey Section */
 .journey {
+  font-size: 2rem;
   background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
 }
 
