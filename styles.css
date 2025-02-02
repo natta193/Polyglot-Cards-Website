@@ -1,11 +1,15 @@
 /* General Styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Trebuchet MS', sans-serif;
-  background: linear-gradient(135deg, #f9f9f9, #e6e6fa);
-  color: #333;
-  scroll-behavior: smooth;
+  font-family: 'Roboto';
+  /* background overidden */
+  background: #F4ECD6;
+  color: #000;
   overflow-x: hidden; /* Prevent horizontal scroll during animations */
 }
 
@@ -27,6 +31,18 @@ nav {
 
 nav .logo img {
   height: 50px;
+  margin-left: 50%;
+  margin-top:4px;
+  border-radius: 10px;
+}
+
+nav .logo img a {
+  transition: color 0.3s ease;
+}
+
+nav .logo a:hover img {
+  box-shadow: 0 0 10px 2px #BA1200;
+  transition: box-shadow 0.3s ease;
 }
 
 nav ul {
@@ -37,6 +53,8 @@ nav ul {
 }
 
 nav ul li {
+  display: flex;
+  align-items: center;
   margin: 0 15px;
 }
 
@@ -47,8 +65,15 @@ nav ul li a {
   transition: color 0.3s ease;
 }
 
+nav ul li:last-child a {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 2px solid #2E6A8E;
+  border-radius: 15px;
+}
+
 nav ul li a:hover {
-  color: #6a11cb;
+  color: #BA1200;
 }
 
 /* Sections */
@@ -68,7 +93,7 @@ nav ul li a:hover {
 
 /* Home Section */
 .home {
-  background: linear-gradient(135deg, #e6e6fa, #f0f8ff);
+  background: transparent;
 }
 
 .home .title {
@@ -76,41 +101,69 @@ nav ul li a:hover {
   margin: 0;
   opacity: 0;
   transform: translateY(-50px);
-  animation: fadeInUp 1.5s ease-out forwards;
+  animation: Title 1.5s ease-in forwards;
 }
 
 .home .slogan {
+  font-family: 'Montserrat';
   font-size: 5rem;
+  color: #2E6A8E;
   margin: 0;
   opacity: 0;
   transform: translateY(100px);
   transition: opacity 3s ease, transform 2.5s ease;
 }
 
+.home .intro {
+  font-family: 'Montserrat';
+  font-size: 2rem;
+  text-align: left;
+  color: #265977;
+  opacity: 1;
+  transform: translateX(-50px) translateY(50px);
+}
+
 /* Our Aim Section */
-.aim {
-  font-size: 2rem;
-  background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
-}
-
-/* Products Section */
-.products {
-  font-size: 2rem;
-  background: linear-gradient(135deg, #e6e6fa, #f0f8ff);
-}
-
-/* Join the Journey Section */
-.journey {
-  font-size: 2rem;
-  background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+.aim, .product, .journey{
+  h1 {
+    font-size: 3rem;
   }
+  h2 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#product .product-container {
+  display: flex;
+  width: 100%;
+}
+
+/* Right column: Remaining width for content */
+#product .right-column {
+  /* flex: 1; */
+  /* Or, if you prefer a fixed 66.66%: flex: 0 0 66.66%; */
+  flex: 0 0 50%;
+  padding: 20px;
+}
+
+#product .left-column {
+  flex: 0 0 45%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;         
+}
+
+#product .left-column img {
+  max-width: 100%;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
 }
 
 /* Email Form Styles */
@@ -122,27 +175,38 @@ nav ul li a:hover {
 }
 
 #emailForm input[type="email"] {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 250px;
+  padding: 12px 15px;
+  font-style: normal;
+  font-size: 1.2rem;
+  border: 1px solid #d3cce3;  /* a soft pastel grayish-purple */
+  border-radius: 15px;
+  width: 320px;
   margin-right: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+#emailForm input[type="email"]:focus {
+  font-style: italic;
+  outline: none;
+  border-color: #a99fb3;  /* a slightly deeper pastel tone */
+  box-shadow: 0 0 5px rgba(169, 159, 179, 0.5);
+}
+
+/* Modern pastel button with subtle hover effect */
 #emailForm button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #6a11cb;
+  padding: 12px 25px;
+  font-size: 1.2rem;
+  background-color: #7D5BA6;  /* pastel purple, dark enough to provide contrast */
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #emailForm button:hover {
-  background-color: #4a0d9b;
+  background-color: #6a4e96;  /* a slightly darker shade on hover */
+  transform: translateY(-2px);
 }
 
 #message {
@@ -163,11 +227,11 @@ nav ul li a:hover {
   }
 
   .home .title {
-    font-size: 6rem;
+    font-size: 4rem;
   }
 
   .home .slogan {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }
 
@@ -182,8 +246,67 @@ nav ul li a:hover {
   animation: spin 1s linear infinite;
 }
 
+/* Animations */
+@keyframes Title {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @keyframes Intro {
+  to {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+}*/
+
 /* Keyframes for the spin animation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+footer {
+  background-color: #333;  /* Dark grey background */
+  color: #fff;
+  padding: 15px 0;
+  padding-left: 1%;
+  text-align: left;
+  font-size: 0.9rem;
+  font-family: 'Ubuntu';
+  position: relative;
+  width: 100%;
+  margin-top: 20px;
+}
+
+footer .footer-content a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer .footer-content a:hover {
+  text-decoration: underline;
+  color: #ccc;
+}
+
+.back-to-home {
+  text-align: left;
+  padding-left: 5%;
+  margin-top: 40px;
+}
+
+.back-to-home a {
+  background-color: #BA1200;  /* Use your chosen color */
+  color: #fff;
+  font-family: 'Ubuntu';
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-home a:hover {
+  background-color: #4a0d9b;
 }
