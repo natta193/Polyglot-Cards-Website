@@ -4,19 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Polyglot Cards</title>
-  <link rel="icon" type="image/png" href="images/logo_updated.png">
+  <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
 </head>
 <body>
   <!-- Navigation Bar -->
   <nav>
     <div class="logo">
-      <img src="images/logo_updated.png" alt="Polyglot Cards Logo">
+      <a href="#home">
+        <img src="images/logo.png" alt="Polyglot Cards Logo">
+      </a>
     </div>
     <ul>
-      <li><a href="#home">Home</a></li>
+      <li><a href="#product">The Product</a></li>
       <li><a href="#aim">Our Aim</a></li>
-      <li><a href="#products">Products</a></li>
       <li><a href="#journey">Join the Journey</a></li>
     </ul>
   </nav>
@@ -24,31 +27,43 @@
   <!-- Sections -->
   <section id="home" class="section home">
     <div class="content">
+      <h2 class="intro">Discover:</h2>
       <h1 class="title">Polyglot Cards</h1>
-      <p class="slogan">Mind Your Language</p>
+      <p class="slogan"><i>Mind Your Language</i></p>
+    </div>
+  </section>
+
+  <section id="product" class="section product">
+    <div class="product-container"></div>
+      <div class="left-column">
+        <img src="/images/render.png" alt="Placeholder Image">
+      </div>
+      <div class="right-column">
+        <h1>The Product</h1>
+        <h2>A New Formula</h2>
+        <p>A <b>premium</b>, <i>multi-difficulty</i>, UNO-style card game including <b>50</b> cards which were designed to help you <b>unlock</b> French.</p>
+        <h2>Rigorously Tested</h2>
+        <p>We have put our cards through <b>rigorous</b> testing to ensure that you will get the best learning experience whilst maximising your <b>enjoyment.</b></p>
+        <h2>Coming Soon</h2>
+        <p>Our first deck of language learning cards is coming soon, allow us to <b>contact</b> you down the page.</p>
+      </div>
     </div>
   </section>
 
   <section id="aim" class="section aim">
     <div class="content">
-      <h2>Our Aim</h2>
+      <h1>Our Aim</h1>
       <p>We create innovative language learning tools to help you master new languages effortlessly.</p>
     </div>
   </section>
 
-  <section id="products" class="section products">
-    <div class="content">
-      <h2>Our Products</h2>
-      <p>Our first deck of language learning cards is coming soon. Stay tuned!</p>
-    </div>
-  </section>
 
   <section id="journey" class="section journey">
     <div class="content">
-      <h2>Join the Journey</h2>
-      <p>Want to start your language learning journey? Get notified here:</p>
+      <h1>Join the Journey</h1>
+      <p>Want to start your language learning journey?<br>Get <b>notified</b> here:</p>
       <form id="emailForm">
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        <input type="email" id="email" name="email" placeholder="Email Address" required>
         <button type="submit">Submit</button>
       </form>
       <!-- Spinner element (hidden by default) -->
@@ -57,6 +72,15 @@
       <p id="response"></p>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      Polyglot | 
+      <a href="terms.html">Terms and Conditions</a> | 
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
