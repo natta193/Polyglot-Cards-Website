@@ -11,6 +11,7 @@ body {
   background: #F4ECD6;
   color: #000;
   overflow-x: hidden; /* Prevent horizontal scroll during animations */
+  line-height: 1.2;
 }
 
 /* Navigation Bar */
@@ -124,18 +125,26 @@ nav ul li a:hover {
 }
 
 /* Our Aim Section */
-.aim, .product, .journey{
-  h1 {
+.aim h1, .product h1, .journey h1 {
     font-size: 3rem;
   }
-  h2 {
-    font-size: 2rem;
-  }
-  p {
-    font-size: 1.5rem;
-  }
+
+.aim h2, .product h2, .journey h2 {
+  font-size: 2rem;
+}
+
+.aim p, .product p, .journey p {
+  font-size:1.5rem;
+}
+
+.aim, .product, .journey {
   padding-left: 10%;
   padding-right: 10%;
+}
+
+.journey p {
+  line-height: 1.8;
+  text-align: left;
 }
 
 #product .product-container {
@@ -180,7 +189,8 @@ nav ul li a:hover {
   font-size: 1.2rem;
   border: 1px solid #d3cce3;  /* a soft pastel grayish-purple */
   border-radius: 15px;
-  width: 320px;
+  width: 90%;
+  max-width: 320px;
   margin-right: 10px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -215,26 +225,6 @@ nav ul li a:hover {
   color: #333;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  .home .title {
-    font-size: 4rem;
-  }
-
-  .home .slogan {
-    font-size: 2rem;
-  }
-}
-
 /* Spinner styling */
 .spinner {
   margin: 20px auto;
@@ -253,13 +243,6 @@ nav ul li a:hover {
     transform: translateY(0);
   }
 }
-
-/* @keyframes Intro {
-  to {
-    opacity: 0;
-    transform: translateX(-500px);
-  }
-}*/
 
 /* Keyframes for the spin animation */
 @keyframes spin {
@@ -310,3 +293,109 @@ footer .footer-content a:hover {
 .back-to-home a:hover {
   background-color: #4a0d9b;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    width: 100%;
+    left: 0;
+    transform: none;
+    padding: 10px 5%;
+  }
+  
+  nav .logo img {
+    margin: 0;
+    height: 40px
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 10%;
+    line-height: 0.5;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  .home .title {
+    font-size: 3rem;
+    transform: translateY(-15%)
+  }
+
+  .home .slogan {
+    font-size: 1rem;
+  }
+
+  .home .intro {
+    transform: translateY(0px);
+    font-size: 1rem;
+  }
+
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-column, .right-column {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+  .left-column img {
+    width: 100%;
+    height: auto;
+  }
+
+  .product, .aim {
+    padding-top: 30%;
+  }
+
+  /* Animations */
+  @keyframes Title {
+    to {
+      opacity: 1;
+      transform: translateY(50);
+    }
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .section {
+    min-height: 100vh;
+  
+    /* Instead of a fixed height, allow the section to expand as needed 
+       while ensuring it’s at least the full viewport height minus the nav bar */
+    min-height: calc(100vh - 60px);
+    height: auto;
+    /* Add top padding to ensure content starts below the nav bar */
+    padding-top: 60px;
+  }
+
+  nav ul {
+    flex-direction: row; /* make items display side-by-side */
+    align-items: center;
+    /* Remove or adjust any other styles (like padding or line-height) as needed */
+  }
+
+  nav ul li {
+    margin: 0 15px; /* Adjust horizontal spacing as needed */
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  section.home {
+    height: 80vh;
+    padding-bottom: 25vh;
+    min-height: auto;
+  }
+  .product, .journey {
+    min-height: 100vh;
+  }
+  .aim {
+    padding-top: 65vh;
+    min-height: 50vh;
+    max-height: 50vh;
+  }
+}
+
