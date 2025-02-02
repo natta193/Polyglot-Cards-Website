@@ -30,11 +30,16 @@ homeObserver.observe(homeSection);
 // Handle email form submission
 document.getElementById('emailForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  // Show the spinner (loading icon)
+  document.getElementById('loading').style.display = 'block';
+  // Clear any previous response message
+  document.getElementById('response').innerText = '';
   
   var email = document.getElementById('email').value;
   var params = "email=" + encodeURIComponent(email);
   
-  fetch('https://script.google.com/macros/s/AKfycbwpQufe2HEqyFfrajXavqAWWIeKXB4Z0pcUHUWG-HMpjAzMYBfhpWZCH3VDf1xPMDyVwA/exec', {  // Replace with your actual URL
+  fetch('https://script.google.com/macros/s/AKfycbz4g4GCnjgfYOAVdjn3lSPhMI-0oO_AUMuHnp2VEIMKhFFtbIUyEgak9Sfaf-kyc2qPFw/exec', {  // Replace with your actual URL
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -43,6 +48,9 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
   })
   .then(response => response.json())
   .then(result => {
+    // Hide the spinner once the request is done
+    document.getElementById('loading').style.display = 'none';
+
     if (result.result === "success") {
       document.getElementById('response').innerText = "Email submitted successfully!";
     } else {
@@ -50,6 +58,8 @@ document.getElementById('emailForm').addEventListener('submit', function(e) {
     }
   })
   .catch(error => {
+    // Hide the spinner on error
+    document.getElementById('loading').style.display = 'none';
     document.getElementById('response').innerText = "Error: " + error;
     console.error("Fetch error:", error);
   });
