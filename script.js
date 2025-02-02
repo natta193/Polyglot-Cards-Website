@@ -28,26 +28,30 @@ const homeObserver = new IntersectionObserver(
 homeObserver.observe(homeSection);
 
 // Handle email form submission
-document.getElementById('emailForm').addEventListener('submit', function (e) {
-  e.preventDefault(); // Prevent default form submission
-
-  const email = document.getElementById('email').value;
-  const webAppUrl = 'https://script.google.com/macros/s/your-web-app-url/exec'; // Replace with your Web App URL
-
-  fetch(webAppUrl, {
+document.getElementById('emailForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  var email = document.getElementById('email').value;
+  var params = "email=" + encodeURIComponent(email);
+  
+  fetch('https://script.google.com/macros/s/AKfycbwpQufe2HEqyFfrajXavqAWWIeKXB4Z0pcUHUWG-HMpjAzMYBfhpWZCH3VDf1xPMDyVwA/exec', {  // Replace with your actual URL
     method: 'POST',
-    body: JSON.stringify({ email: email }),
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
+    body: params
   })
-    .then((response) => response.text())
-    .then((data) => {
-      document.getElementById('message').textContent = 'Thank you for subscribing!';
-      document.getElementById('emailForm').reset(); // Clear the form
-    })
-    .catch((error) => {
-      document.getElementById('message').textContent = 'Something went wrong. Please try again.';
-      console.error('Error:', error);
-    });
+  .then(response => response.json())
+  .then(result => {
+    if (result.result === "success") {
+      document.getElementById('response').innerText = "Email submitted successfully!";
+    } else {
+      document.getElementById('response').innerText = "Submission failed: " + result.error;
+    }
+  })
+  .catch(error => {
+    document.getElementById('response').innerText = "Error: " + error;
+    console.error("Fetch error:", error);
+  });
 });
+
