@@ -77,32 +77,51 @@ nav ul li a:hover {
   color: #BA1200;
 }
 
+.container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /* Sections */
 .section {
-  height: 100vh;
+  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
-  box-sizing: border-box;
+  padding: 10%;
   width: 100%;
-  position: relative;
   opacity: 1; /* Ensure sections are visible by default */
-  transition: opacity 1s ease, transform 1s ease;
+  background: transparent;
 }
 
 /* Home Section */
 .home {
-  background: transparent;
+  flex-direction: column;
+}
+
+.home .intro {
+  font-family: 'Montserrat';
+  font-size: 2rem;
+  color: #265977;
 }
 
 .home .title {
   font-size: 10rem;
   margin: 0;
   opacity: 0;
+  padding-bottom: 2%;
   transform: translateY(-50px);
   animation: Title 1.5s ease-in forwards;
+}
+
+@keyframes Title {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .home .slogan {
@@ -115,64 +134,51 @@ nav ul li a:hover {
   transition: opacity 3s ease, transform 2.5s ease;
 }
 
-.home .intro {
-  font-family: 'Montserrat';
-  font-size: 2rem;
-  text-align: left;
-  color: #265977;
-  opacity: 1;
-  transform: translateX(-50px) translateY(50px);
-}
-
-/* Our Aim Section */
-.aim h1, .product h1, .journey h1 {
-    font-size: 3rem;
-  }
-
-.aim h2, .product h2, .journey h2 {
-  font-size: 2rem;
-}
-
-.aim p, .product p, .journey p {
-  font-size:1.5rem;
-}
-
 .aim, .product, .journey {
+  h1 {font-size: 3rem;}
+  h2 {font-size: 2rem;}
+  p {font-size: 1.5rem;}
   padding-left: 10%;
   padding-right: 10%;
+
 }
 
-.journey p {
-  line-height: 1.8;
-  text-align: left;
-}
-
-#product .product-container {
+/* Product Section */
+.section .product-container {
   display: flex;
+  flex-direction: row;
   width: 100%;
 }
 
-/* Right column: Remaining width for content */
-#product .right-column {
-  /* flex: 1; */
-  /* Or, if you prefer a fixed 66.66%: flex: 0 0 66.66%; */
-  flex: 0 0 50%;
-  padding: 20px;
+.product-container .right-column {
+  flex: 0 0 40%;
+  padding: 5%;
+  text-align: left;
 }
 
-#product .left-column {
-  flex: 0 0 45%;
-  padding-right: 5%;
+.product-container .left-column {
+  flex: 0 0 40%;
+  padding: 5%;
+
   display: flex;
-  justify-content: flex-start; 
-  align-items: center;         
+  justify-content: center; 
+  align-items: center;
 }
 
-#product .left-column img {
+.product-container .left-column img {
   max-width: 100%;
   margin: 0;
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* journey section */
+.journey p {
+  line-height: 1.8;
+  text-align: left;
+  display: flex
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Email Form Styles */
@@ -202,7 +208,6 @@ nav ul li a:hover {
   box-shadow: 0 0 5px rgba(169, 159, 179, 0.5);
 }
 
-/* Modern pastel button with subtle hover effect */
 #emailForm button {
   padding: 12px 25px;
   font-size: 1.2rem;
@@ -225,7 +230,6 @@ nav ul li a:hover {
   color: #333;
 }
 
-/* Spinner styling */
 .spinner {
   margin: 20px auto;
   border: 8px solid #f3f3f3;  /* Light grey */
@@ -236,20 +240,12 @@ nav ul li a:hover {
   animation: spin 1s linear infinite;
 }
 
-/* Animations */
-@keyframes Title {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Keyframes for the spin animation */
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
+/* Footer */
 footer {
   background-color: #333;  /* Dark grey background */
   color: #fff;
@@ -296,106 +292,68 @@ footer .footer-content a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  nav {
-    width: 100%;
-    left: 0;
-    transform: none;
-    padding: 10px 5%;
-  }
-  
-  nav .logo img {
-    margin: 0;
-    height: 40px
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-    padding-right: 10%;
-    line-height: 0.5;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
   .home .title {
-    font-size: 3rem;
-    transform: translateY(-15%)
+    font-size: 2.5rem;
   }
 
   .home .slogan {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .home .intro {
-    transform: translateY(0px);
     font-size: 1rem;
   }
 
-  .product-container {
-    flex-direction: column;
-    align-items: center;
-  }
-  .left-column, .right-column {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding: 10px;
-  }
-  .left-column img {
-    width: 100%;
-    height: auto;
-  }
-
-  .product, .aim {
-    padding-top: 30%;
-  }
-
-  /* Animations */
-  @keyframes Title {
-    to {
-      opacity: 1;
-      transform: translateY(50);
-    }
+  .section {
+    h1 {font-size: 1.5rem;}
+    h2 {font-size: 1.2rem;}
+    p {font-size: 1rem;}
   }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-  .section {
-    min-height: 100vh;
-  
-    /* Instead of a fixed height, allow the section to expand as needed 
-       while ensuring it’s at least the full viewport height minus the nav bar */
+  .section {  
     min-height: calc(100vh - 60px);
     height: auto;
-    /* Add top padding to ensure content starts below the nav bar */
-    padding-top: 60px;
+  }
+
+  /* ensure nav is horizontal */
+  nav {
+    max-height: 10vh;
   }
 
   nav ul {
-    flex-direction: row; /* make items display side-by-side */
+    flex-direction: row;
     align-items: center;
-    /* Remove or adjust any other styles (like padding or line-height) as needed */
-  }
-
-  nav ul li {
-    margin: 0 15px; /* Adjust horizontal spacing as needed */
   }
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
-  section.home {
-    height: 80vh;
-    padding-bottom: 25vh;
-    min-height: auto;
+  .home .title {
+    padding: 5%;
   }
-  .product, .journey {
-    min-height: 100vh;
+
+  nav ul {
+    flex-direction: column;
+    line-height: 1.5;
   }
-  .aim {
-    padding-top: 65vh;
-    min-height: 50vh;
-    max-height: 50vh;
+
+  .section .product-container {
+    flex-direction: column;
+  }
+
+  .product-container .right-column {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+
+  .product-container .left-column {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+
+  footer {
+    padding-left: 5%;
   }
 }
 
