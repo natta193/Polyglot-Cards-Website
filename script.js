@@ -141,6 +141,103 @@ function updateBackgroundColor() {
   document.body.style.background = bgColor;
 }
 
+// Function to get nav height and position triangles
+function initializeTriangles() {
+  const homeSection = document.getElementById('home');
+  const journeySection = document.getElementById('journey'); // Add journey section
+  if (!homeSection || !journeySection) return;
+
+  // Create triangles for home section if they don't exist
+  if (!document.querySelector('.triangle-top-left')) {
+    const topTriangle = document.createElement('div');
+    topTriangle.className = 'triangle-top-left';
+    homeSection.appendChild(topTriangle);
+  }
+  if (!document.querySelector('.triangle-bottom-right')) {
+    const bottomTriangle = document.createElement('div');
+    bottomTriangle.className = 'triangle-bottom-right';
+    homeSection.appendChild(bottomTriangle);
+  }
+
+  // Create triangles for journey section if they don't exist
+  if (!document.querySelector('.triangle-top-right')) {
+    const topTriangle = document.createElement('div');
+    topTriangle.className = 'triangle-top-right';
+    journeySection.appendChild(topTriangle);
+  }
+  if (!document.querySelector('.triangle-bottom-left')) {
+    const bottomTriangle = document.createElement('div');
+    bottomTriangle.className = 'triangle-bottom-left';
+    journeySection.appendChild(bottomTriangle);
+  }
+
+  // Get nav height and update top triangle positions
+  const nav = document.querySelector('nav');
+  const navHeight = nav.offsetHeight;
+  const triangleTopLeft = document.querySelector('.triangle-top-left');
+  const triangleTopRight = document.querySelector('.triangle-top-right');
+  if (triangleTopLeft) triangleTopLeft.style.top = `${navHeight}px`;
+  if (triangleTopRight) triangleTopRight.style.top = `${navHeight}px`;
+
+  updateTriangles(); // Initial position update
+}
+
+function updateTriangles() {
+  const homeSection = document.getElementById('home');
+  const journeySection = document.getElementById('journey'); // Add journey section
+  const triangleTopLeft = document.querySelector('.triangle-top-left');
+  const triangleBottomRight = document.querySelector('.triangle-bottom-right');
+  const triangleTopRight = document.querySelector('.triangle-top-right');
+  const triangleBottomLeft = document.querySelector('.triangle-bottom-left');
+  
+  if (!triangleTopLeft || !triangleBottomRight || !triangleTopRight || !triangleBottomLeft) return;
+  
+  const scrollPosition = window.scrollY;
+  const viewportHeight = window.innerHeight;
+
+  // Home section triangles (top-left and bottom-right)
+  if (homeSection.getBoundingClientRect().top <= 0 && homeSection.getBoundingClientRect().bottom >= 0) {
+    const scrollProgressHome = Math.min(1, Math.max(0, scrollPosition / viewportHeight));
+    const leftTranslation = -scrollProgressHome * 300; // Slide in from left
+    const rightTranslation = scrollProgressHome * 300; // Slide in from right
+    const opacityHome = 1 - scrollProgressHome;
+    
+    triangleTopLeft.style.transform = `translateX(${leftTranslation}px)`;
+    triangleBottomRight.style.transform = `translateX(${rightTranslation}px)`;
+    triangleTopLeft.style.opacity = opacityHome;
+    triangleBottomRight.style.opacity = opacityHome;
+  } else {
+    // Hide home section triangles when not in view
+    triangleTopLeft.style.opacity = 0;
+    triangleBottomRight.style.opacity = 0;
+  }
+
+  // Journey section triangles (top-right and bottom-left)
+  if (journeySection.getBoundingClientRect().top <= 0 && journeySection.getBoundingClientRect().bottom >= 0) {
+    const scrollProgressJourney = Math.min(1, Math.max(0, (scrollPosition - journeySection.offsetTop) / viewportHeight)); // TODO FIX THIS LINE
+    const rightTranslationJourney = scrollProgressJourney * 300; // Slide in from right (like bottom-right)
+    const leftTranslationJourney = -scrollProgressJourney * 300; // Slide in from left (like top-left)
+    const opacityJourney = 1 - scrollProgressJourney;
+    
+    triangleTopRight.style.transform = `translateX(${rightTranslationJourney}px)`; // Like bottom-right
+    triangleBottomLeft.style.transform = `translateX(${leftTranslationJourney}px)`; // Like top-left
+    triangleTopRight.style.opacity = opacityJourney;
+    triangleBottomLeft.style.opacity = opacityJourney;
+  } else {
+    // Hide journey section triangles when not in view
+    triangleTopRight.style.opacity = 0;
+    triangleBottomLeft.style.opacity = 0;
+  }
+}
+
+// Add the event listeners
+document.addEventListener('DOMContentLoaded', initializeTriangles);
+window.addEventListener('scroll', updateTriangles);
+window.addEventListener('resize', () => {
+  initializeTriangles(); // Recalculate on resize
+  updateTriangles();
+});
+
 // Attach event listeners to update the background on scroll and on page load.
 window.addEventListener('scroll', updateBackgroundColor);
 window.addEventListener('load', updateBackgroundColor);
