@@ -378,7 +378,7 @@ footer .footer-content a:hover {
 }
 
 @media (min-width: 1000px) {
-  /* Triangle styles - vwoved container overrides */
+  /* Triangle styles - removed container overrides */
   .triangle-top-left,
   .triangle-bottom-right {
     position: fixed; /* Changed to fixed to stick to viewport edges */
@@ -424,54 +424,5 @@ footer .footer-content a:hover {
     right: 0;
     border-width: 0 0 250px 400px;
     border-color: transparent transparent #8E5572 transparent;
-  }
-
-
-  /* Triangle styles - vwoved container overrides */
-  .triangle-top-right,
-  .triangle-bottom-left {
-      position: fixed; /* Changed to fixed to stick to viewport edges */
-      width: 400px;
-      height: 250px;
-      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-      opacity: 1;
-      pointer-events: none;
-      z-index: 1; /* Below nav bar which is z-index: 1000 */
-  }
-
-  .triangle-top-right {
-      top: 0;  /* Will be adjusted by JavaScript */
-      right: 0;
-      transform: translate(0, 0);
-  }
-
-  .triangle-bottom-left {
-      bottom: 0;
-      left: 0;
-      transform: translate(0, 0);
-  }
-
-  /* Triangle shapes */
-  .triangle-top-right::before,
-  .triangle-bottom-left::before {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-style: solid;
-  }
-
-  .triangle-top-right::before {
-      top: 0;
-      right: 0;
-      border-width: 0 400px 250px 0;
-      border-color: transparent #8E5572 transparent transparent;
-  }
-
-  .triangle-bottom-left::before {
-      bottom: 0;
-      left: 0;
-      border-width: 250px 0 0 400px;
-      border-color: transparent transparent transparent #8E5572;
   }
 }
