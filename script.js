@@ -141,6 +141,69 @@ function updateBackgroundColor() {
   document.body.style.background = bgColor;
 }
 
-// Attach event listeners to update the background on scroll and on page load.
-window.addEventListener('scroll', updateBackgroundColor);
-window.addEventListener('load', updateBackgroundColor);
+// Function to get nav height and position triangles
+function initializeTriangles() {
+  const homeSection = document.getElementById('home');
+  if (!homeSection) return;
+
+  // Create triangles if they don't exist
+  if (!document.querySelector('.triangle-top-left')) {
+    const topTriangle = document.createElement('div');
+    topTriangle.className = 'triangle-top-left';
+    document.body.appendChild(topTriangle); // Append to body instead
+  }
+  if (!document.querySelector('.triangle-bottom-right')) {
+    const bottomTriangle = document.createElement('div');
+    bottomTriangle.className = 'triangle-bottom-right';
+    document.body.appendChild(bottomTriangle); // Append to body instead
+  }
+
+  // Get nav height and update top triangle position
+  const nav = document.querySelector('nav');
+  const navHeight = nav.offsetHeight;
+  const triangleTopLeft = document.querySelector('.triangle-top-left');
+  triangleTopLeft.style.top = `${navHeight}px`;
+
+  updateTriangles(); // Initial position update
+}
+
+function updateTriangles() {
+  const homeSection = document.getElementById('home');
+  const triangleTopLeft = document.querySelector('.triangle-top-left');
+  const triangleBottomRight = document.querySelector('.triangle-bottom-right');
+  
+  if (!triangleTopLeft || !triangleBottomRight || !homeSection) return;
+  
+  // Get the home section's position relative to the viewport
+  const homeBounds = homeSection.getBoundingClientRect();
+  const isHomeVisible = homeBounds.top < window.innerHeight && homeBounds.bottom > 0;
+  
+  if (isHomeVisible) {
+    // Calculate how far the home section has moved up
+    const scrollProgress = Math.max(0, Math.min(1, -homeBounds.top / homeBounds.height));
+    
+    // Calculate translations
+    const leftTranslation = -scrollProgress * 300;
+    const rightTranslation = scrollProgress * 300;
+    const opacity = 1 - scrollProgress;
+    
+    // Apply transformations
+    triangleTopLeft.style.transform = `translateX(${leftTranslation}px)`;
+    triangleBottomRight.style.transform = `translateX(${rightTranslation}px)`;
+    
+    triangleTopLeft.style.opacity = opacity;
+    triangleBottomRight.style.opacity = opacity;
+  } else {
+    // Hide triangles when home section is not visible
+    triangleTopLeft.style.opacity = 0;
+    triangleBottomRight.style.opacity = 0;
+  }
+}
+
+// Add the event listeners
+document.addEventListener('DOMContentLoaded', initializeTriangles);
+window.addEventListener('scroll', updateTriangles);
+window.addEventListener('resize', () => {
+  initializeTriangles();
+  updateTriangles();
+});

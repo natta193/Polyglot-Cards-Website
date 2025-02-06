@@ -104,12 +104,12 @@ nav ul li a:hover {
 
 .home .intro {
   font-family: 'Montserrat';
-  font-size: 2rem;
+  font-size: 2vw;
   color: #265977;
 }
 
 .home .title {
-  font-size: 10rem;
+  font-size: 10vw;
   margin: 0;
   opacity: 0;
   padding-bottom: 2%;
@@ -125,22 +125,37 @@ nav ul li a:hover {
 }
 
 .home .slogan {
-  font-family: 'Montserrat';
-  font-size: 5rem;
-  color: #2E6A8E;
+  font-family: 'Kanit';
+  font-size: 5vw;
+  color: transparent;
   margin: 0;
   opacity: 0;
   transform: translateY(100px);
   transition: opacity 3s ease, transform 2.5s ease;
+  -webkit-text-stroke: 1px #2E6A8E;
+  background-image: linear-gradient(#2E6A8E, #2E6A8E);
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-position: calc(-5vw*9) 0;
+  animation: backcolor 7s linear infinite;
+}
+
+@keyframes backcolor {
+  0% {
+    background-position: calc(-5vw*9) 0;
+  }
+  100% {
+    background-position: calc(5vw*9) 0;
+  }
 }
 
 .aim, .product, .journey {
-  h1 {font-size: 3rem;}
-  h2 {font-size: 2rem;}
-  p {font-size: 1.5rem;}
+  h1 {font-size: 3vw;}
+  h2 {font-size: 2vw;}
+  p {font-size: 1.5vw;}
   padding-left: 10%;
   padding-right: 10%;
-
 }
 
 /* Product Section */
@@ -173,26 +188,23 @@ nav ul li a:hover {
 }
 
 /* journey section */
-.journey p {
+.journey {
   line-height: 1.8;
   text-align: left;
-  display: flex
-  flex-direction: column;
-  justify-content: center;
 }
 
 /* Email Form Styles */
 #emailForm {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   margin-top: 20px;
 }
 
 #emailForm input[type="email"] {
   padding: 12px 15px;
   font-style: normal;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
   border: 1px solid #d3cce3;  /* a soft pastel grayish-purple */
   border-radius: 15px;
   width: 90%;
@@ -210,7 +222,7 @@ nav ul li a:hover {
 
 #emailForm button {
   padding: 12px 25px;
-  font-size: 1.2rem;
+  font-size: 1.2vw;
   background-color: #7D5BA6;  /* pastel purple, dark enough to provide contrast */
   color: white;
   border: none;
@@ -222,12 +234,6 @@ nav ul li a:hover {
 #emailForm button:hover {
   background-color: #6a4e96;  /* a slightly darker shade on hover */
   transform: translateY(-2px);
-}
-
-#message {
-  margin-top: 10px;
-  font-size: 1rem;
-  color: #333;
 }
 
 .spinner {
@@ -250,9 +256,8 @@ footer {
   background-color: #333;  /* Dark grey background */
   color: #fff;
   padding: 15px 0;
-  padding-left: 1%;
-  text-align: left;
-  font-size: 0.9rem;
+  text-align: center;
+  font-size: 0.9vw;
   font-family: 'Ubuntu';
   position: relative;
   width: 100%;
@@ -293,21 +298,43 @@ footer .footer-content a:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
   .home .title {
-    font-size: 2.5rem;
+    font-size: 15vw;
   }
 
   .home .slogan {
-    font-size: 1.5rem;
+    font-size: 7.5vw;
   }
 
   .home .intro {
-    font-size: 1rem;
+    font-size: 3vw;
   }
 
-  .section {
-    h1 {font-size: 1.5rem;}
-    h2 {font-size: 1.2rem;}
-    p {font-size: 1rem;}
+  .section .product-container {
+    flex-direction: column;
+  }
+
+  .product-container .right-column {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+
+  .product-container .left-column {
+    flex: 0 0 100%;
+    padding: 0;
+  }
+
+  .aim, .product, .journey {
+    h1 {font-size: 5vw;}
+    h2 {font-size: 4vw;}
+    p {font-size: 3vw;}
+  }
+
+  #emailForm input[type="email"] {
+    font-size: 3vw;
+  }
+  
+  #emailForm button {
+    font-size: 3vw;
   }
 }
 
@@ -329,6 +356,9 @@ footer .footer-content a:hover {
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
+  .section {
+    height: auto;
+  }
   .home .title {
     padding: 5%;
   }
@@ -338,18 +368,8 @@ footer .footer-content a:hover {
     line-height: 1.5;
   }
 
-  .section .product-container {
-    flex-direction: column;
-  }
-
-  .product-container .right-column {
-    flex: 0 0 100%;
-    padding: 0;
-  }
-
-  .product-container .left-column {
-    flex: 0 0 100%;
-    padding: 0;
+  .aim, .journey {
+    text-align: left;
   }
 
   footer {
@@ -357,3 +377,52 @@ footer .footer-content a:hover {
   }
 }
 
+@media (min-width: 1000px) {
+  /* Triangle styles - removed container overrides */
+  .triangle-top-left,
+  .triangle-bottom-right {
+    position: fixed; /* Changed to fixed to stick to viewport edges */
+    width: 400px;
+    height: 250px;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    opacity: 1;
+    pointer-events: none;
+    z-index: 1; /* Below nav bar which is z-index: 1000 */
+  }
+
+  .triangle-top-left {
+    top: 0;  /* Will be adjusted by JavaScript */
+    left: 0;
+    transform: translate(0, 0);
+  }
+
+  .triangle-bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: translate(0, 0);
+  }
+
+  /* Triangle shapes */
+  .triangle-top-left::before,
+  .triangle-bottom-right::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+
+  .triangle-top-left::before {
+    top: 0;
+    left: 0;
+    border-width: 250px 400px 0 0;
+    border-color: #8E5572 transparent transparent transparent;
+  }
+
+  .triangle-bottom-right::before {
+    bottom: 0;
+    right: 0;
+    border-width: 0 0 250px 400px;
+    border-color: transparent transparent #8E5572 transparent;
+  }
+}
