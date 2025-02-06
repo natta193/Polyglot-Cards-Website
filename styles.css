@@ -298,7 +298,7 @@ footer .footer-content a:hover {
 /* Responsive Design */
 @media (max-width: 768px) {
   .home .title {
-    font-size: 15vw;
+    font-size: 12vw;
   }
 
   .home .slogan {
@@ -356,7 +356,7 @@ footer .footer-content a:hover {
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
-  .section {
+  .aim, .product, .journey {
     height: auto;
   }
   .home .title {
