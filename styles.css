@@ -336,6 +336,10 @@ footer .footer-content a:hover {
   #emailForm button {
     font-size: 3vw;
   }
+
+  footer {
+    font-size: 1.8vw;
+  }
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
