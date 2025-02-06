@@ -207,3 +207,4 @@ window.addEventListener('resize', () => {
   initializeTriangles();
   updateTriangles();
 });
+window.addEventListener('scroll', updateBackgroundColor);
