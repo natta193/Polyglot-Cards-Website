@@ -429,4 +429,12 @@ footer .footer-content a:hover {
     border-width: 0 0 250px 400px;
     border-color: transparent transparent #8E5572 transparent;
   }
+
+  .aim {
+    padding: 15%;
+    text-align: left;
+    line-height: 1.6;
+
+    p {font-size: 1.7vw;}
+  }
 }
