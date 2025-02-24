@@ -154,6 +154,7 @@ nav ul li a:hover {
   h1 {font-size: 3vw;}
   h2 {font-size: 2vw;}
   p {font-size: 1.5vw;}
+  a {font-size: 1.5vw;}
   padding-left: 10%;
   padding-right: 10%;
 }
@@ -327,6 +328,7 @@ footer .footer-content a:hover {
     h1 {font-size: 5vw;}
     h2 {font-size: 4vw;}
     p {font-size: 3vw;}
+    a {font-size: 3vw;}
   }
 
   #emailForm input[type="email"] {
@@ -436,5 +438,6 @@ footer .footer-content a:hover {
     line-height: 1.6;
 
     p {font-size: 1.7vw;}
+    a {font-size: 1.7vw;}
   }
 }
