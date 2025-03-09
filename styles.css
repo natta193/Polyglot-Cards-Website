@@ -221,7 +221,7 @@ nav ul li a:hover {
   box-shadow: 0 0 5px rgba(169, 159, 179, 0.5);
 }
 
-#emailForm button {
+button {
   padding: 12px 25px;
   font-size: 1.2vw;
   background-color: #7D5BA6;  /* pastel purple, dark enough to provide contrast */
@@ -232,7 +232,7 @@ nav ul li a:hover {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#emailForm button:hover {
+button:hover {
   background-color: #6a4e96;  /* a slightly darker shade on hover */
   transform: translateY(-2px);
 }
